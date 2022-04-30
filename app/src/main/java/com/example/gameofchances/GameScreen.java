@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class GameScreen extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<TextView> allTextViews; // all tile number views
@@ -50,7 +52,8 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
 
     private void initializeNumbers() {
         numbers = new ArrayList<>();
-        for(int i=0;i<9;i++){
+        numbers.add(numberToFind);
+        for(int i=0;i<8;i++){
             int newVal = (int) (Math.random()*100 + 1);
             if(numbers.contains(newVal)) { // duplicate element do not include
                 i--;
@@ -58,8 +61,7 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
             }
             numbers.add(newVal);
         }
-        int pos = (int) (Math.random()*9); // choose the magic number
-        numbers.set(pos, numberToFind);
+        Collections.shuffle(numbers);
     }
 
     private void findAllTextViews() {
