@@ -3,8 +3,10 @@ package com.example.gameofchances;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.accessibilityservice.AccessibilityService;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.transition.Fade;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -102,6 +105,8 @@ public class GameScreen extends AppCompatActivity implements View.OnClickListene
             submitButton.setVisibility(View.GONE);
             targetTextView.setText(String.valueOf(numberToFind));
             targetTextView.setVisibility(View.VISIBLE);
+            InputMethodManager manager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(submitButton.getWindowToken(), 0);
         }
     }
 
